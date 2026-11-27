@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ADMIN_CHART_DATA, STITCH_ASSETS } from '../data/initialData';
 import { AdminSection, DateRangeOption, Hazard } from '../types';
+import { ResilientImage } from './ResilientImage';
 
 interface AdminDashboardViewProps {
   hazards: Hazard[];
@@ -622,11 +623,12 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                 </div>
 
                 <div className="relative w-full h-[360px] rounded-xl overflow-hidden bg-surface-container">
-                  <div
-                    className="w-full h-full bg-cover bg-center opacity-85"
-                    style={{
-                      backgroundImage: `url('${STITCH_ASSETS.campusMapPhoto}')`,
-                    }}
+                  <ResilientImage
+                    src={STITCH_ASSETS.campusMapPhoto}
+                    alt="CIT-U and Cebu City Hazard Heatmap"
+                    className="w-full h-full object-cover opacity-85"
+                    fallbackIcon="map"
+                    fallbackLabel="CIT-U Campus Heatmap"
                   />
 
                   {hazards.map((h) => {

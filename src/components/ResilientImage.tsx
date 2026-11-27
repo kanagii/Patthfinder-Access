@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ResilientImageProps {
   src: string;
@@ -16,6 +16,10 @@ export const ResilientImage: React.FC<ResilientImageProps> = ({
   fallbackLabel,
 }) => {
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
 
   if (failed || !src) {
     return (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { STITCH_ASSETS } from '../data/initialData';
+import { ResilientImage } from './ResilientImage';
 
 interface RouteComparisonViewProps {
   onStartNavigation: () => void;
@@ -57,9 +58,12 @@ export const RouteComparisonView: React.FC<RouteComparisonViewProps> = ({
       <div className="flex flex-col gap-4">
         {/* Route Comparison Map */}
         <div className="relative w-full h-64 bg-surface-container rounded-2xl overflow-hidden shadow-md border border-outline-variant/30">
-          <div
-            className="w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url('${STITCH_ASSETS.campusMapPhoto}')` }}
+          <ResilientImage
+            src={STITCH_ASSETS.campusMapPhoto}
+            alt="CIT-U Campus Route Comparison Map"
+            className="w-full h-full object-cover"
+            fallbackIcon="map"
+            fallbackLabel="CIT-U Campus Map"
           />
           <div className="absolute inset-0 bg-surface/25 pointer-events-none" />
 

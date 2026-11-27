@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { AdminDashboardView } from './components/AdminDashboardView';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { AppShell } from './components/AppShell';
+
+const AdminDashboardView = lazy(() =>
+  import('./components/AdminDashboardView').then((m) => ({
+    default: m.AdminDashboardView,
+  }))
+);
 import { HazardDetailView } from './components/HazardDetailView';
 import { HomeMapView } from './components/HomeMapView';
 import { OnboardingView } from './components/OnboardingView';
@@ -400,13 +405,23 @@ export default function App() {
     <div className={rootClass}>
       {view === 'admin' ? (
         <>
-          <AdminDashboardView
-            hazards={hazards}
-            onDispatchTicket={handleDispatchTicket}
-            onResolveHazard={handleResolveHazard}
-            onExitAdmin={() => navigateTo('map')}
-            onShowToast={showToast}
-          />
+          <Suspense
+            fallback={
+              <div className="min-h-screen bg-surface text-on-surface flex items-center justify-center p-6">
+                <span className="text-sm font-semibold text-on-surface-variant">
+                  Loading PDAO Analytics Portal...
+                </span>
+              </div>
+            }
+          >
+            <AdminDashboardView
+              hazards={hazards}
+              onDispatchTicket={handleDispatchTicket}
+              onResolveHazard={handleResolveHazard}
+              onExitAdmin={() => navigateTo('map')}
+              onShowToast={showToast}
+            />
+          </Suspense>
           {toastBanner}
         </>
       ) : (
