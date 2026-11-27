@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MOBILITY_PROFILES, STITCH_ASSETS } from '../data/initialData';
+import { useHorizontalScroll } from '../hooks/useHorizontalScroll';
 import { MobilityModeId, SensorySettings } from '../types';
 import { ResilientImage } from './ResilientImage';
 
@@ -29,6 +30,12 @@ export const ProfileSettingsView: React.FC<ProfileSettingsViewProps> = ({
   const [showEscortModal, setShowEscortModal] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
   const [packSyncing, setPackSyncing] = useState(false);
+  const {
+    scrollRef: engineScrollRef,
+    edgeState: engineEdges,
+    scrollByStep: scrollEngineRow,
+    containerProps: engineContainerProps,
+  } = useHorizontalScroll(220);
 
   const activeProfile =
     MOBILITY_PROFILES.find((p) => p.id === mobilityMode) ??
@@ -97,10 +104,10 @@ export const ProfileSettingsView: React.FC<ProfileSettingsViewProps> = ({
   ];
 
   return (
-    <div className="w-full px-4 py-4 flex flex-col gap-5">
-      <div className="flex flex-col gap-5">
+    <div className="w-full min-w-0 overflow-x-hidden px-4 py-4 flex flex-col gap-5">
+      <div className="flex flex-col gap-5 min-w-0">
         {/* Profile Hero, Mobility Engine & Parameters */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 min-w-0">
           {/* Student & Scout Profile Hero Card */}
           <section className="w-full bg-surface-container-lowest rounded-2xl p-5 shadow-sm border border-outline-variant/25 relative overflow-hidden">
             <div className="flex items-start gap-4">
@@ -185,64 +192,99 @@ export const ProfileSettingsView: React.FC<ProfileSettingsViewProps> = ({
           </section>
 
           {/* Mobility Routing Engine */}
-          <section className="space-y-3">
+          <section className="space-y-3 min-w-0">
             <div className="flex items-center justify-between gap-2">
               <h3 className="text-base font-bold text-on-surface">
                 Mobility Routing Engine
               </h3>
-              <button
-                type="button"
-                onClick={onOpenOnboarding}
-                className="text-xs font-bold text-primary hover:underline"
-              >
-                Launch Guided Wizard
-              </button>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={onOpenOnboarding}
+                  className="text-xs font-bold text-primary hover:underline"
+                >
+                  Guided Wizard
+                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    aria-label="Scroll mobility profiles left"
+                    disabled={!engineEdges.canScrollLeft}
+                    onClick={() => scrollEngineRow(-1)}
+                    className="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high disabled:opacity-35 text-on-surface flex items-center justify-center active:scale-95 transition-all"
+                  >
+                    <span className="material-symbols-outlined text-[17px]">
+                      chevron_left
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Scroll mobility profiles right"
+                    disabled={!engineEdges.canScrollRight}
+                    onClick={() => scrollEngineRow(1)}
+                    className="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high disabled:opacity-35 text-on-surface flex items-center justify-center active:scale-95 transition-all"
+                  >
+                    <span className="material-symbols-outlined text-[17px]">
+                      chevron_right
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <div className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-1 no-scrollbar">
-              {MOBILITY_PROFILES.filter((p) => p.id !== 'pedestrian').map(
-                (profile) => {
-                  const isActive = mobilityMode === profile.id;
-                  return (
-                    <button
-                      key={profile.id}
-                      type="button"
-                      onClick={() => {
-                        onChangeMobilityMode(profile.id);
-                        onUpdateSensory({ maxIncline: profile.defaultIncline });
-                        onShowToast(
-                          `Routing mode set: ${profile.shortTitle}`
-                        );
-                      }}
-                      className={`shrink-0 snap-start flex items-center gap-2.5 px-4 py-3 rounded-xl transition-all text-left min-h-[58px] ${
-                        isActive
-                          ? 'bg-primary text-on-primary shadow-md'
-                          : 'bg-surface-container-lowest text-on-surface border border-outline-variant/30 shadow-sm hover:bg-surface-container-low'
-                      }`}
-                    >
-                      <span className="material-symbols-outlined text-[23px]">
-                        {profile.icon}
+            <div
+              ref={engineScrollRef}
+              role="radiogroup"
+              aria-label="Mobility Routing Engine Profiles"
+              {...engineContainerProps}
+              className="flex flex-nowrap gap-2.5 overflow-x-auto overscroll-x-contain snap-x snap-mandatory touch-pan-x scroll-smooth -mx-4 px-4 scroll-px-4 pb-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
+            >
+              {MOBILITY_PROFILES.map((profile) => {
+                const isActive = mobilityMode === profile.id;
+                return (
+                  <button
+                    key={profile.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={isActive}
+                    onClick={(e) => {
+                      onChangeMobilityMode(profile.id);
+                      onUpdateSensory({ maxIncline: profile.defaultIncline });
+                      e.currentTarget.scrollIntoView({
+                        behavior: 'smooth',
+                        inline: 'nearest',
+                        block: 'nearest',
+                      });
+                      onShowToast(`Routing mode set: ${profile.shortTitle}`);
+                    }}
+                    className={`shrink-0 snap-start flex items-center gap-2.5 px-4 py-3 rounded-xl transition-all text-left min-h-[58px] ${
+                      isActive
+                        ? 'bg-primary text-on-primary shadow-md'
+                        : 'bg-surface-container-lowest text-on-surface border border-outline-variant/30 shadow-sm hover:bg-surface-container-low'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-[23px] shrink-0">
+                      {profile.icon}
+                    </span>
+                    <div>
+                      <span className="block text-sm font-bold whitespace-nowrap">
+                        {profile.shortTitle}
                       </span>
-                      <div>
-                        <span className="block text-sm font-bold whitespace-nowrap">
-                          {profile.shortTitle}
-                        </span>
-                        <span
-                          className={`block text-[11px] whitespace-nowrap ${
-                            isActive
-                              ? 'text-on-primary/90'
-                              : 'text-on-surface-variant'
-                          }`}
-                        >
-                          {isActive
-                            ? 'Active Route Filter'
-                            : `Max ${profile.defaultIncline}% ramp`}
-                        </span>
-                      </div>
-                    </button>
-                  );
-                }
-              )}
+                      <span
+                        className={`block text-[11px] whitespace-nowrap ${
+                          isActive
+                            ? 'text-on-primary/90'
+                            : 'text-on-surface-variant'
+                        }`}
+                      >
+                        {isActive
+                          ? 'Active Route Filter'
+                          : `Max ${profile.defaultIncline}% ramp`}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Active Filter Parameters Card */}

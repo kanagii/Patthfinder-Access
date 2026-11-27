@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { MOBILITY_PROFILES } from '../data/initialData';
+import { useHorizontalScroll } from '../hooks/useHorizontalScroll';
 import { MobilityModeId } from '../types';
 
 interface OnboardingViewProps {
@@ -15,17 +16,13 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
   onContinue,
   onSkip,
 }) => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const onboardingProfiles = MOBILITY_PROFILES.filter(
-    (p) => p.id !== 'power-chair'
-  );
-
-  const scrollByCard = (direction: -1 | 1) => {
-    carouselRef.current?.scrollBy({
-      left: direction * 296,
-      behavior: 'smooth',
-    });
-  };
+  const {
+    scrollRef: carouselRef,
+    edgeState,
+    scrollByStep,
+    containerProps,
+  } = useHorizontalScroll(296);
+  const onboardingProfiles = MOBILITY_PROFILES;
 
   const scrollToProfile = (idx: number, id: MobilityModeId) => {
     onSelectMode(id);
@@ -38,7 +35,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
   };
 
   return (
-    <div className="w-full px-4 py-4 flex flex-col flex-1">
+    <div className="w-full min-w-0 overflow-x-hidden px-4 py-4 flex flex-col flex-1">
       {/* Header Progress */}
       <div className="pb-3 flex flex-col gap-1.5">
         <div className="flex items-center justify-between flex-wrap gap-2">
@@ -70,8 +67,9 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
           <button
             type="button"
             aria-label="Scroll profiles left"
-            onClick={() => scrollByCard(-1)}
-            className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center active:scale-95 transition-transform"
+            disabled={!edgeState.canScrollLeft}
+            onClick={() => scrollByStep(-1)}
+            className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high disabled:opacity-35 text-on-surface flex items-center justify-center active:scale-95 transition-all"
           >
             <span className="material-symbols-outlined text-[18px]">
               chevron_left
@@ -80,8 +78,9 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
           <button
             type="button"
             aria-label="Scroll profiles right"
-            onClick={() => scrollByCard(1)}
-            className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center active:scale-95 transition-transform"
+            disabled={!edgeState.canScrollRight}
+            onClick={() => scrollByStep(1)}
+            className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high disabled:opacity-35 text-on-surface flex items-center justify-center active:scale-95 transition-all"
           >
             <span className="material-symbols-outlined text-[18px]">
               chevron_right
@@ -90,12 +89,13 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
         </div>
       </div>
 
-      {/* 4 Profile Cards Horizontal Carousel */}
+      {/* Profile Cards Horizontal Carousel */}
       <div
         ref={carouselRef}
         role="radiogroup"
         aria-label="Campus Mobility Profile Options"
-        className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 py-1.5 no-scrollbar"
+        {...containerProps}
+        className="flex flex-nowrap gap-3 overflow-x-auto overscroll-x-contain snap-x snap-mandatory touch-pan-x scroll-smooth -mx-4 px-4 scroll-px-4 py-1.5 no-scrollbar cursor-grab active:cursor-grabbing select-none"
       >
         {onboardingProfiles.map((profile, idx) => {
           const isSelected = selectedMode === profile.id;

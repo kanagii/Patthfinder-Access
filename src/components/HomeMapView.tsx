@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useHorizontalScroll } from '../hooks/useHorizontalScroll';
 import { Hazard, MapFilterChipId } from '../types';
 import { ResilientImage } from './ResilientImage';
 
@@ -26,7 +27,7 @@ const FILTER_CHIPS: {
 }[] = [
   { id: 'wheelchair', label: 'Wheelchair', icon: 'accessible' },
   { id: 'strollers', label: 'Strollers', icon: 'stroller' },
-  { id: 'vision', label: 'Tactile / Vision', icon: 'visibility' },
+  { id: 'vision', label: 'Tactile Paving', icon: 'visibility' },
   { id: 'cane', label: 'Cane / Crutches', icon: 'elderly' },
   { id: 'step-free', label: 'Step-Free Only', icon: 'ramp_right' },
   { id: 'elevators', label: 'Elevators Only', icon: 'elevator' },
@@ -80,6 +81,12 @@ export const HomeMapView: React.FC<HomeMapViewProps> = ({
   const [zoom, setZoom] = useState(1);
   const [showAllLayers, setShowAllLayers] = useState(true);
   const [showAllAlerts, setShowAllAlerts] = useState(false);
+  const {
+    scrollRef: filterScrollRef,
+    edgeState: filterEdges,
+    scrollByStep: scrollFilterRow,
+    containerProps: filterContainerProps,
+  } = useHorizontalScroll(200);
 
   const selectedHazard = useMemo(
     () => hazards.find((h) => h.id === selectedHazardId) ?? hazards[0],
@@ -415,8 +422,8 @@ export const HomeMapView: React.FC<HomeMapViewProps> = ({
             </div>
 
             {/* TOP FLOATING SEARCH & FILTER BAR */}
-            <div className="absolute top-0 inset-x-0 p-3 z-30 flex flex-col gap-2 pointer-events-none">
-              <div className="pointer-events-auto relative">
+            <div className="absolute top-0 inset-x-0 z-30 flex flex-col gap-2 pointer-events-none">
+              <div className="pointer-events-auto relative px-3 pt-3">
                 <div className="w-full bg-surface-container-lowest rounded-xl shadow-[0_4px_16px_rgba(20,27,43,0.12)] flex items-center min-h-[52px] px-3.5 gap-2.5">
                   <span className="material-symbols-outlined text-primary text-[22px]">
                     search
@@ -488,40 +495,85 @@ export const HomeMapView: React.FC<HomeMapViewProps> = ({
                 )}
               </div>
 
-              {/* Horizontal Scrollable Filter Chips */}
-              <div className="pointer-events-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
-                {FILTER_CHIPS.map((chip) => {
-                  const isActive = activeFilter === chip.id;
-                  return (
-                    <button
-                      key={chip.id}
-                      type="button"
-                      onClick={() => {
-                        onSelectFilter(chip.id);
-                        onShowToast(`Map filter set: ${chip.label}`);
-                      }}
-                      className={`min-h-[44px] px-3.5 rounded-full text-xs font-bold flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-all active:scale-95 ${
-                        isActive
-                          ? 'bg-primary text-on-primary shadow-md'
-                          : 'bg-surface-container-lowest text-on-surface hover:bg-surface-container-high shadow-sm'
-                      }`}
-                    >
-                      <span
-                        className={`material-symbols-outlined text-[18px] ${
-                          isActive ? 'material-symbols-filled' : ''
+              {/* Horizontal Scrollable Mobility Profile & Filter Chips */}
+              <div className="pointer-events-auto relative w-full min-w-0">
+                <div
+                  ref={filterScrollRef}
+                  role="radiogroup"
+                  aria-label="Mobility profile map filters"
+                  {...filterContainerProps}
+                  className="flex flex-nowrap items-center gap-2 w-full min-w-0 overflow-x-auto overscroll-x-contain touch-pan-x scroll-smooth no-scrollbar px-3 scroll-px-3 py-1 cursor-grab active:cursor-grabbing select-none"
+                >
+                  {FILTER_CHIPS.map((chip) => {
+                    const isActive = activeFilter === chip.id;
+                    return (
+                      <button
+                        key={chip.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={isActive}
+                        onClick={(e) => {
+                          onSelectFilter(chip.id);
+                          e.currentTarget.scrollIntoView({
+                            behavior: 'smooth',
+                            inline: 'nearest',
+                            block: 'nearest',
+                          });
+                          onShowToast(`Map filter set: ${chip.label}`);
+                        }}
+                        className={`min-h-[42px] px-3.5 rounded-full text-xs font-bold flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-all active:scale-95 ${
+                          isActive
+                            ? 'bg-primary text-on-primary shadow-md'
+                            : 'bg-surface-container-lowest text-on-surface hover:bg-surface-container-high shadow-sm border border-outline-variant/25'
                         }`}
                       >
-                        {chip.icon}
-                      </span>
-                      <span>{chip.label}</span>
-                      {isActive && (
-                        <span className="material-symbols-outlined text-[16px]">
-                          check_circle
+                        <span
+                          className={`material-symbols-outlined text-[18px] ${
+                            isActive ? 'material-symbols-filled' : ''
+                          }`}
+                        >
+                          {chip.icon}
                         </span>
-                      )}
+                        <span>{chip.label}</span>
+                        {isActive && (
+                          <span className="material-symbols-outlined text-[16px]">
+                            check_circle
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {filterEdges.canScrollLeft && (
+                  <div className="absolute left-0 top-0 bottom-0 flex items-center pl-1.5 pr-3 bg-gradient-to-r from-[#edf2fa]/95 via-[#edf2fa]/70 to-transparent pointer-events-none">
+                    <button
+                      type="button"
+                      aria-label="Scroll mobility filters left"
+                      onClick={() => scrollFilterRow(-1)}
+                      className="pointer-events-auto w-7 h-7 rounded-full bg-surface-container-lowest/95 border border-outline-variant/40 text-on-surface shadow-md flex items-center justify-center hover:bg-surface-container active:scale-90 transition-transform"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">
+                        chevron_left
+                      </span>
                     </button>
-                  );
-                })}
+                  </div>
+                )}
+
+                {filterEdges.canScrollRight && (
+                  <div className="absolute right-0 top-0 bottom-0 flex items-center pr-1.5 pl-3 bg-gradient-to-l from-[#edf2fa]/95 via-[#edf2fa]/70 to-transparent pointer-events-none">
+                    <button
+                      type="button"
+                      aria-label="Scroll mobility filters right"
+                      onClick={() => scrollFilterRow(1)}
+                      className="pointer-events-auto w-7 h-7 rounded-full bg-surface-container-lowest/95 border border-outline-variant/40 text-on-surface shadow-md flex items-center justify-center hover:bg-surface-container active:scale-90 transition-transform"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">
+                        chevron_right
+                      </span>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
