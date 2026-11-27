@@ -40,18 +40,19 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
       <div className="pb-3 flex flex-col gap-1.5">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <span className="text-xs font-bold text-primary tracking-wide">
-            Step 1 of 3 · Personalized Navigation
+            Step 1 of 3 · Personalized Accessibility
           </span>
           <span className="text-[11px] font-semibold text-on-surface-variant">
-            CIT-U Onboarding
+            CIT-U Access Setup
           </span>
         </div>
         <h2 className="text-2xl font-extrabold text-on-surface tracking-tight text-balance">
-          Choose your mobility profile
+          Select your accessibility profile
         </h2>
         <p className="text-sm text-on-surface-variant leading-relaxed">
-          PathFinder customizes route inclines, surface smoothness, and eliminates
-          physical barriers across CIT-U campus based on your needs.
+          PathFinder customizes ramp inclines, tactile guidance, elevator
+          detours, and barrier alerts across CIT-U campus around your access
+          needs.
         </p>
       </div>
 
@@ -93,7 +94,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
       <div
         ref={carouselRef}
         role="radiogroup"
-        aria-label="Campus Mobility Profile Options"
+        aria-label="Accessibility and Mobility Profile Options"
         {...containerProps}
         className="flex flex-nowrap gap-3 overflow-x-auto overscroll-x-contain snap-x snap-mandatory touch-pan-x scroll-smooth -mx-4 px-4 scroll-px-4 py-1.5 no-scrollbar cursor-grab active:cursor-grabbing select-none"
       >
@@ -199,7 +200,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
         <p className="text-sm text-on-surface-variant leading-relaxed">
           <strong className="text-on-surface">Flexibility Guaranteed:</strong>{' '}
           You can fine-tune ramp inclines, curb tolerances, and auditory alerts
-          anytime in Profile &amp; Settings.
+          anytime in Profile &amp; Accessibility.
         </p>
       </div>
 
@@ -221,7 +222,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({
           onClick={onSkip}
           className="w-full min-h-[44px] py-2 px-4 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-semibold text-xs transition-colors flex items-center justify-center whitespace-nowrap"
         >
-          Skip for now (Standard Walk)
+          Continue with Default Step-Free Routing
         </button>
       </div>
     </div>

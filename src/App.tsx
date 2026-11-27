@@ -446,16 +446,16 @@ export default function App() {
                 } else if (mode === 'cane') {
                   setMapFilter('cane');
                 } else {
-                  setMapFilter('strollers');
+                  setMapFilter('covered');
                 }
               }}
               onContinue={() => {
-                showToast('Mobility profile applied to CIT-U Campus Map.');
+                showToast('Accessibility profile applied to CIT-U Campus Map.');
                 navigateTo('map');
               }}
               onSkip={() => {
-                setMobilityMode('pedestrian');
-                setMapFilter('strollers');
+                setMobilityMode('wheelchair');
+                setMapFilter('step-free');
                 navigateTo('map');
               }}
             />

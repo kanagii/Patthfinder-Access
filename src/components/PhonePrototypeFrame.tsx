@@ -13,7 +13,7 @@ const PROTOTYPE_SCREENS: {
   label: string;
   icon: string;
 }[] = [
-  { id: 'onboarding', step: '01', label: 'Mobility Onboarding', icon: 'tune' },
+  { id: 'onboarding', step: '01', label: 'Accessibility Profile', icon: 'tune' },
   { id: 'map', step: '02', label: 'Home Campus Map', icon: 'map' },
   { id: 'routes', step: '03', label: 'Route A vs Route B', icon: 'alt_route' },
   { id: 'navigation', step: '04', label: 'Turn-by-Turn Reroute', icon: 'navigation' },

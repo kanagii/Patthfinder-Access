@@ -191,12 +191,17 @@ export const ProfileSettingsView: React.FC<ProfileSettingsViewProps> = ({
             </div>
           </section>
 
-          {/* Mobility Routing Engine */}
+          {/* Accessibility & Mobility Profiles */}
           <section className="space-y-3 min-w-0">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="text-base font-bold text-on-surface">
-                Mobility Routing Engine
-              </h3>
+              <div className="min-w-0">
+                <h3 className="text-base font-bold text-on-surface">
+                  Accessibility &amp; Mobility Profiles
+                </h3>
+                <p className="text-xs text-on-surface-variant">
+                  Tailor routes to your assistive device and access needs
+                </p>
+              </div>
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   type="button"
@@ -235,7 +240,7 @@ export const ProfileSettingsView: React.FC<ProfileSettingsViewProps> = ({
             <div
               ref={engineScrollRef}
               role="radiogroup"
-              aria-label="Mobility Routing Engine Profiles"
+              aria-label="Accessibility and Mobility Profiles"
               {...engineContainerProps}
               className="flex flex-nowrap gap-2.5 overflow-x-auto overscroll-x-contain snap-x snap-mandatory touch-pan-x scroll-smooth -mx-4 px-4 scroll-px-4 pb-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
             >
@@ -792,8 +797,8 @@ export const ProfileSettingsView: React.FC<ProfileSettingsViewProps> = ({
               Switch Student Profile?
             </h3>
             <p className="text-sm text-on-surface-variant">
-              Would you like to re-run Mobility Onboarding for another student
-              ID?
+              Would you like to re-run Accessibility Profile setup for another
+              student ID?
             </p>
             <div className="flex justify-end gap-2.5">
               <button

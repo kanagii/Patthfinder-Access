@@ -12,7 +12,7 @@ interface AppShellProps {
 }
 
 const VIEW_TITLES: Record<AppView, string> = {
-  onboarding: 'Mobility Profile',
+  onboarding: 'Accessibility Profile',
   map: 'Campus Map',
   routes: 'Route Comparison',
   navigation: 'Turn-by-Turn',
@@ -20,7 +20,7 @@ const VIEW_TITLES: Record<AppView, string> = {
   report: 'Report Obstacle',
   'report-success': 'Report Submitted',
   rewards: 'Rewards & Karma',
-  profile: 'Profile & Settings',
+  profile: 'Profile & Accessibility',
   admin: 'Admin Portal',
 };
 

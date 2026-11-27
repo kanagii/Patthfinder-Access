@@ -26,12 +26,12 @@ const FILTER_CHIPS: {
   icon: string;
 }[] = [
   { id: 'wheelchair', label: 'Wheelchair', icon: 'accessible' },
-  { id: 'strollers', label: 'Strollers', icon: 'stroller' },
   { id: 'vision', label: 'Tactile Paving', icon: 'visibility' },
-  { id: 'cane', label: 'Cane / Crutches', icon: 'elderly' },
+  { id: 'cane', label: 'Cane / Walker', icon: 'elderly' },
   { id: 'step-free', label: 'Step-Free Only', icon: 'ramp_right' },
   { id: 'elevators', label: 'Elevators Only', icon: 'elevator' },
   { id: 'covered', label: 'Covered Walkways', icon: 'umbrella' },
+  { id: 'strollers', label: 'Strollers & Carts', icon: 'stroller' },
 ];
 
 const CAMPUS_DESTINATIONS = [
@@ -500,7 +500,7 @@ export const HomeMapView: React.FC<HomeMapViewProps> = ({
                 <div
                   ref={filterScrollRef}
                   role="radiogroup"
-                  aria-label="Mobility profile map filters"
+                  aria-label="Accessibility and mobility map filters"
                   {...filterContainerProps}
                   className="flex flex-nowrap items-center gap-2 w-full min-w-0 overflow-x-auto overscroll-x-contain touch-pan-x scroll-smooth no-scrollbar px-3 scroll-px-3 py-1 cursor-grab active:cursor-grabbing select-none"
                 >

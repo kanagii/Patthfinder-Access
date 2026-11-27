@@ -51,10 +51,10 @@ export interface MobilityProfileSpec {
 export const MOBILITY_PROFILES: MobilityProfileSpec[] = [
   {
     id: 'wheelchair',
-    title: 'Wheelchair & Powered Mobility',
+    title: 'Manual Wheelchair User',
     shortTitle: 'Manual Wheelchair',
     description:
-      'For manual wheelchairs, electric power chairs, and motorized mobility scooters',
+      'Step-free corridors, gentle ramp grades (≤ 4.5%), wide doorway clearances, and smooth level paving',
     icon: 'accessible_forward',
     defaultIncline: 4.5,
     stairsRule: 'Strictly 0',
@@ -70,10 +70,10 @@ export const MOBILITY_PROFILES: MobilityProfileSpec[] = [
   },
   {
     id: 'power-chair',
-    title: 'Power Chair / Mobility Scooter',
-    shortTitle: 'Power Chair / Scooter',
+    title: 'Power Chair & Mobility Scooter',
+    shortTitle: 'Power Chair & Scooter',
     description:
-      'Motorized ramp speed bias with wider turning radii and lift priority',
+      'Wide turning radii, elevator priority, curb-cut access, and solid paved campus routes',
     icon: 'electric_scooter',
     defaultIncline: 6.0,
     stairsRule: 'Strictly 0',
@@ -88,10 +88,10 @@ export const MOBILITY_PROFILES: MobilityProfileSpec[] = [
   },
   {
     id: 'cane',
-    title: 'Cane, Crutches or Walker',
-    shortTitle: 'Cane & Crutches',
+    title: 'Cane, Crutches & Walker',
+    shortTitle: 'Cane, Crutches & Walker',
     description:
-      'For individuals with limited stamina, balance considerations, or ambulatory aids',
+      'Non-slip pathways, handrail-equipped steps, frequent rest stops, and balanced inclines',
     icon: 'elderly',
     defaultIncline: 6.5,
     stairsRule: 'Max 3 w/ rail',
@@ -106,10 +106,10 @@ export const MOBILITY_PROFILES: MobilityProfileSpec[] = [
   },
   {
     id: 'vision',
-    title: 'Blind or Low Vision',
-    shortTitle: 'Low-Vision / Blind',
+    title: 'Blind & Low-Vision Navigation',
+    shortTitle: 'Blind & Low Vision',
     description:
-      'Audio cues, yellow tactile paving blister alerts, and high-contrast cartography',
+      'Tactile blister paving alerts, spoken turn cues, braille signage, and high-contrast mapping',
     icon: 'visibility',
     defaultIncline: 8.3,
     stairsRule: 'Tactile Marked',
@@ -124,20 +124,20 @@ export const MOBILITY_PROFILES: MobilityProfileSpec[] = [
   },
   {
     id: 'pedestrian',
-    title: 'Everyday Pedestrian & Stroller',
-    shortTitle: 'Stroller & Walk',
+    title: 'Limited Stamina & Fatigue Support',
+    shortTitle: 'Limited Stamina & Fatigue',
     description:
-      'Fastest standard walking routes, stroller-friendly options, and campus shortcuts',
-    icon: 'stroller',
-    defaultIncline: 8.0,
-    stairsRule: 'Stroller Bypass',
+      'Minimal elevation gain, shaded covered walkways, elevator priority, and frequent seating rest stops',
+    icon: 'accessibility_new',
+    defaultIncline: 5.0,
+    stairsRule: 'Minimal / Elevator',
     clearanceRule: '≥ 80 cm',
-    pavementRule: 'Standard Paved',
-    curbCutRule: 'Curb Ramps',
+    pavementRule: 'Even & Shaded',
+    curbCutRule: 'Gentle Curb Ramps',
     tags: [
-      { icon: 'directions_walk', label: 'Fastest paths' },
-      { icon: 'roofing', label: 'Sheltered walkways' },
-      { icon: 'luggage', label: 'Stroller bypass' },
+      { icon: 'chair', label: 'Rest stops ≤ 50m' },
+      { icon: 'roofing', label: 'Covered walkways' },
+      { icon: 'elevator', label: 'Elevator priority' },
     ],
   },
 ];
