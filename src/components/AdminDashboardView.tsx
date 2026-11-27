@@ -622,11 +622,48 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                   </div>
                 </div>
 
-                <div className="relative w-full h-[360px] rounded-xl overflow-hidden bg-surface-container">
+                <div className="relative w-full h-[360px] rounded-xl overflow-hidden bg-[#eef3fb]">
+                  <svg
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    viewBox="0 0 600 360"
+                    preserveAspectRatio="xMidYMid slice"
+                    fill="none"
+                  >
+                    <defs>
+                      <pattern
+                        id="admin-heatmap-grid"
+                        width="32"
+                        height="32"
+                        patternUnits="userSpaceOnUse"
+                      >
+                        <path
+                          d="M 32 0 L 0 0 0 32"
+                          stroke="#d4def4"
+                          strokeWidth="1"
+                        />
+                      </pattern>
+                    </defs>
+                    <rect width="600" height="360" fill="#edf2fa" />
+                    <rect width="600" height="360" fill="url(#admin-heatmap-grid)" />
+                    <path d="M0 245 L600 220" stroke="#ffffff" strokeWidth="14" />
+                    <path d="M180 0 L210 360" stroke="#ffffff" strokeWidth="12" />
+                    <path d="M400 0 L380 360" stroke="#ffffff" strokeWidth="10" />
+                    <rect x="65" y="95" width="95" height="65" rx="8" fill="#dce5f8" />
+                    <rect x="240" y="65" width="120" height="75" rx="8" fill="#d2ede3" />
+                    <rect x="415" y="180" width="110" height="80" rx="8" fill="#dce5f8" />
+                    <path
+                      d="M110 240 Q250 180 390 130"
+                      stroke="#008373"
+                      strokeWidth="4"
+                      strokeDasharray="6 5"
+                      opacity="0.65"
+                    />
+                  </svg>
                   <ResilientImage
                     src={STITCH_ASSETS.campusMapPhoto}
                     alt="CIT-U and Cebu City Hazard Heatmap"
-                    className="w-full h-full object-cover opacity-85"
+                    className="relative z-[1] w-full h-full object-cover opacity-85"
                     fallbackIcon="map"
                     fallbackLabel="CIT-U Campus Heatmap"
                   />
@@ -669,7 +706,7 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
 
                   {/* Floating Hotspot Inspector */}
                   {selectedHotspot && (
-                    <div className="absolute bottom-3 left-3 right-3 bg-surface/95 backdrop-blur-md rounded-xl p-3.5 shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="absolute bottom-3 left-3 right-3 z-20 bg-surface/95 backdrop-blur-md rounded-xl p-3.5 shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                       <div className="flex items-center gap-2 min-w-0">
                         <span className="material-symbols-outlined text-secondary shrink-0">
                           location_on

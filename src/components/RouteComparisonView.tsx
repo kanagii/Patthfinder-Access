@@ -57,19 +57,34 @@ export const RouteComparisonView: React.FC<RouteComparisonViewProps> = ({
       {/* Stacked Phone Layout: Map + Route Cards */}
       <div className="flex flex-col gap-4">
         {/* Route Comparison Map */}
-        <div className="relative w-full h-64 bg-surface-container rounded-2xl overflow-hidden shadow-md border border-outline-variant/30">
+        <div className="relative w-full h-64 bg-[#eef3fb] rounded-2xl overflow-hidden shadow-md border border-outline-variant/30">
+          <svg
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            viewBox="0 0 400 260"
+            preserveAspectRatio="xMidYMid slice"
+            fill="none"
+          >
+            <rect width="400" height="260" fill="#edf2fa" />
+            <path d="M0 190 L400 175" stroke="#ffffff" strokeWidth="12" />
+            <path d="M120 0 L135 260" stroke="#ffffff" strokeWidth="10" />
+            <path d="M275 0 L265 260" stroke="#ffffff" strokeWidth="10" />
+            <rect x="35" y="45" width="75" height="60" rx="6" fill="#dce5f8" />
+            <rect x="155" y="85" width="90" height="65" rx="6" fill="#d2ede3" />
+            <rect x="295" y="45" width="75" height="60" rx="6" fill="#dce5f8" />
+          </svg>
           <ResilientImage
             src={STITCH_ASSETS.campusMapPhoto}
             alt="CIT-U Campus Route Comparison Map"
-            className="w-full h-full object-cover"
+            className="relative z-[1] w-full h-full object-cover"
             fallbackIcon="map"
             fallbackLabel="CIT-U Campus Map"
           />
-          <div className="absolute inset-0 bg-surface/25 pointer-events-none" />
+          <div className="absolute inset-0 z-[2] bg-surface/25 pointer-events-none" />
 
           {/* Vector Route Overlay */}
           <svg
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            className="absolute inset-0 z-[3] w-full h-full pointer-events-none"
             viewBox="0 0 400 320"
             preserveAspectRatio="none"
           >

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { AppShell } from './components/AppShell';
 
 const AdminDashboardView = lazy(() =>
