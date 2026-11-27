@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><title>PathFinder Access - Navigation</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-container-high": "#e1e8fd", "on-surface": "#141b2b", "on-surface-variant": "#3d4946", "surface-container-low": "#f1f3ff", "on-secondary-fixed": "#3d0600", "primary-fixed": "#83f6e0", "tertiary-fixed-dim": "#ffb77d", "outline": "#6d7a76", "outline-variant": "#bcc9c5", "tertiary": "#8d4b00", "on-secondary": "#ffffff", "on-tertiary-container": "#fffbff", "error": "#ba1a1a", "surface-variant": "#dce2f7", "on-primary-container": "#f4fffb", "surface-container-highest": "#dce2f7", "on-primary-fixed-variant": "#005046", "tertiary-fixed": "#ffdcc3", "tertiary-container": "#b15f00", "surface-bright": "#f9f9ff", "surface-container": "#e9edff", "on-secondary-fixed-variant": "#8c1900", "error-container": "#ffdad6", "on-error-container": "#93000a", "inverse-surface": "#293040", "on-tertiary": "#ffffff", "primary-container": "#008373", "on-error": "#ffffff", "surface-tint": "#006b5d", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2f1500", "surface": "#f9f9ff", "secondary": "#b02e10", "on-background": "#141b2b", "secondary-fixed": "#ffdad2", "secondary-container": "#fd6442", "primary-fixed-dim": "#65dac4", "secondary-fixed-dim": "#ffb4a3", "surface-container-lowest": "#ffffff", "background": "#f9f9ff", "primary": "#00685b", "on-tertiary-fixed-variant": "#6e3900", "on-secondary-container": "#600e00", "inverse-primary": "#65dac4", "surface-dim": "#d3daef", "on-primary-fixed": "#00201b" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "margin-tablet": "1.5rem", "gutter": "1rem", "margin-desktop": "2.5rem", "margin": "1rem", "space-xl": "2rem", "gutter-desktop": "1.5rem", "space-lg": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem" }, fontFamily: { "label-md": ["Inter"], "headline-lg": ["Inter"], "headline-md": ["Inter"], "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-sm": ["Inter"], "body-md": ["Inter"], "label-sm": ["Inter"], "display-lg": ["Inter"], "display-lg-mobile": ["Inter"], "body-sm": ["Inter"], "headline-lg-mobile": ["Inter"] }, fontSize: { "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.03em", fontWeight: "700" }], "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "700" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" }], "label-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }], "body-md": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700" }], "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "display-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "800" }], "body-sm": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }], "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "0em", fontWeight: "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-12 h-12 flex items-center justify-center rounded-xl text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate max-w-[180px]">Hazard Details</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Share route or hazard" class="w-12 h-12 flex items-center justify-center rounded-xl text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">share</span></button><button aria-label="Bookmark location" class="w-12 h-12 flex items-center justify-center rounded-xl text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">bookmark</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col flex-1 w-full bg-surface pt-16 px-margin pb-safe"><div class="flex flex-col w-full space-y-space-md pb-space-xl">
+<!-- Urgent Status Alert Header -->
+<section class="bg-secondary-container text-on-secondary-container rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="inline-flex items-center gap-1.5 bg-secondary px-3 py-1 rounded-full text-on-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] animate-pulse" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span>High Severity Obstacle • Active Detour</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold bg-on-secondary-container/15 px-2.5 py-1 rounded-full text-on-secondary-container">
+        #CIT-FAC-8821
+      </span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-on-secondary-container mt-1">
+      Elevator Out of Service
+    </h2>
+<p class="font-body-sm text-body-sm text-on-secondary-container/90 mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+<span>Main Building • Ground to 3rd Floor Wing (CIT-U Academic Complex)</span>
+</p>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-on-secondary-container/20">
+<div class="inline-flex items-center gap-1 bg-surface-container-lowest text-secondary px-3 py-1.5 rounded-full font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+<span>85m away from your location</span>
+</div>
+<span class="font-label-sm text-label-sm bg-on-secondary-container/10 px-2.5 py-1 rounded-full">
+        Floors G, 2, 3 affected
+      </span>
+</div>
+</section>
+<!-- Visual Evidence Photo Card -->
+<section class="relative rounded-xl overflow-hidden bg-surface-container shadow-md">
+<div class="relative w-full h-64 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A brightly lit modern university building hallway inside Cebu Institute of Technology University with a stainless steel elevator sealed with bright yellow caution tape and an official Out of Order maintenance placard hung on the door frame, daylight reflecting off polished terrazzo tile floors with accessible yellow tactile paving leading up to the doors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMEhQpTPffy0ELpeORxyj_nNEiVADNGuPSF0QPRctL4MT24xDWc7g4qgje0cjbtbq-fSAzBR2e0i6YnYq_FyY6v3jqm9Eg0sHERxmWH4skIVqBFYKOgWvO1Wyj2LIhK-eRyXfvCo2oJoFoBHNGLdwYGCLpegkn17zoF4qwafHmOcgKuX3WltLWDOYdd2zsPtv_WFpm7Mv7d4UBN8HqfihxykXk3FyTSSCGAotmklU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/30 to-transparent"></div>
+<!-- Live Verification Overlay Pill -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 bg-inverse-surface/85 backdrop-blur-md text-inverse-on-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container animate-ping"></span>
+<span class="font-bold">Live Photo • Taken 12 mins ago</span>
+</div>
+<!-- Quick Zoom Pill -->
+<button aria-label="Enlarge hazard photo" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-inverse-surface/75 backdrop-blur-md text-inverse-on-surface flex items-center justify-center hover:bg-inverse-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">zoom_in</span>
+</button>
+<!-- Bottom Overlay Metadata -->
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-inverse-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">verified</span>
+<span class="font-label-sm text-label-sm">Mechanic on-site diagnosis: Door track fault</span>
+</div>
+<span class="font-label-sm text-label-sm bg-inverse-on-surface/20 px-2 py-0.5 rounded">Ground Flr Foyer</span>
+</div>
+</div>
+</section>
+<!-- Suggested Step-Free Detour Card -->
+<section class="bg-primary text-on-primary rounded-xl p-space-md shadow-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-full bg-on-primary/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">accessible_forward</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="inline-flex items-center gap-1 bg-primary-fixed text-on-primary-fixed px-2.5 py-0.5 rounded-full font-label-sm text-label-sm mb-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Suggested Step-Free Detour</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-primary leading-tight">
+          Use NGE Building Lift B
+        </h3>
+<p class="font-body-sm text-body-sm text-on-primary/90 mt-1">
+          Operational • 60m east via covered walkway ramp (+3 min ETA to Level 3)
+        </p>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-on-primary/20 flex gap-space-sm">
+<button class="flex-1 min-h-[52px] bg-primary-fixed text-on-primary-fixed font-label-lg text-label-lg rounded-xl flex items-center justify-center gap-2 hover:bg-primary-fixed-dim transition-all shadow-sm">
+<span class="material-symbols-outlined text-[22px]">alt_route</span>
+<span>View Reroute Path</span>
+</button>
+<button aria-label="Audio navigation instructions" class="w-[52px] h-[52px] bg-on-primary/20 text-on-primary rounded-xl flex items-center justify-center hover:bg-on-primary/30 transition-colors shrink-0">
+<span class="material-symbols-outlined text-[24px]">volume_up</span>
+</button>
+</div>
+</section>
+<!-- Reporter Profile & Campus Facilities Dispatch Info -->
+<section class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative w-12 h-12 rounded-full overflow-hidden bg-surface-container-high shrink-0">
+<img class="w-full h-full object-cover" data-alt="Profile headshot portrait of a friendly smiling Southeast Asian college student wearing a maroon varsity lanyard inside a modern engineering lab setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs9DetaktVcx4Kx1zxtA7miPUsfVktgjIVei6mmt4LJIFn0d3BwCnIac9-GxJoKz0BBknFrIKRnxcoA3ZTtaksFxRa272plBK1LxCQbbS7RQDEmmDzAQV4Eso0h6rY2poGhtxub0zwvWMoSRbYN28eOJtxXF9S9S_btfg_2QxZUQpOyhRoH3WtUlZj8T2uHiZK7bm3Nr4aD3IGvQ_h3u2s1TcculdIVdP-M0LeXVU"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-primary-container rounded-full ring-2 ring-surface-container-low"></div>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-md text-label-md text-on-surface font-bold">Mark R.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(BSCS 3rd Year)</span>
+</div>
+<p class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span>Gold Scout L4 • 1,420 Karma (99.4% Acc.)</span>
+</p>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium shrink-0">12 min ago</span>
+</div>
+<!-- Official Facilities Dispatch Banner -->
+<div class="bg-surface-container-highest rounded-lg p-3 flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-tint text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">engineering</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface font-bold">CIT-U Facilities &amp; Engineering</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Work Order Dispatched: Tech Unit 2 on-site</p>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold shrink-0">In Progress</span>
+</div>
+</section>
+<!-- Community Crowdsource Verification Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-md space-y-space-md">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[22px]">how_to_vote</span>
+<span>Still there? Help Wildcats Verify</span>
+</h3>
+<span class="font-label-sm text-label-sm text-primary font-bold">Live Status</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+        Your confirmation updates real-time routing for wheelchairs &amp; step-free paths.
+      </p>
+</div>
+<!-- Verification Dual Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="min-h-[56px] bg-secondary text-on-secondary rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary/90 transition-all shadow-sm active:scale-[0.98]" id="btn-still-blocked" onclick="recordVote('blocked')">
+<span class="material-symbols-outlined text-[22px]">block</span>
+<span>Yes, Still Blocked</span>
+</button>
+<button class="min-h-[56px] bg-surface-container-high text-primary font-label-lg text-label-lg rounded-xl flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98]" id="btn-cleared" onclick="recordVote('cleared')">
+<span class="material-symbols-outlined text-[22px]">task_alt</span>
+<span>Cleared / Fixed</span>
+</button>
+</div>
+<!-- Live Vote Count & Trust Meter -->
+<div class="bg-surface-container-low rounded-xl p-3.5 space-y-3">
+<div class="flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-highest hover:bg-secondary-container hover:text-on-secondary-container transition-colors" id="upvote-btn" onclick="tallyVote(1)">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+<span class="font-label-md text-label-md" id="upvote-count">28 Confirmed</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-highest hover:bg-surface-dim transition-colors text-on-surface-variant" id="downvote-btn" onclick="tallyVote(-1)">
+<span class="material-symbols-outlined text-[18px]">thumb_down</span>
+<span class="font-label-md text-label-md" id="downvote-count">2 Disputed</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">93% Confidence</span>
+</div>
+<!-- Trust Meter Progress Bar -->
+<div class="w-full">
+<div class="w-full bg-surface-container-highest h-2.5 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full transition-all duration-500" style="width: 93%;"></div>
+<div class="bg-secondary h-full transition-all duration-500" style="width: 7%;"></div>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>Verified by 30 Wildcats</span>
+<span>High Reliability</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Community Comments Thread -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px]">forum</span>
+<span>Live Campus Thread</span>
+</h3>
+<span class="font-label-sm text-label-sm bg-surface-container px-2.5 py-1 rounded-full text-on-surface font-semibold">3 Updates</span>
+</div>
+<div class="space-y-space-md">
+<!-- Comment 1: Official Facilities Staff -->
+<div class="bg-surface-container-low rounded-xl p-3.5 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">build</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-bold">Engr. Tan</span>
+<span class="inline-flex items-center gap-0.5 bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.2 rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">verified</span> Staff
+                </span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">CIT-U Facilities Office</p>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface pl-10">
+          Technician team is replacing the door sensor now. Expected back online by <strong>3:30 PM</strong>.
+        </p>
+</div>
+<!-- Comment 2: Sarah L. (Scout) -->
+<div class="flex items-start gap-3 pl-1">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-sm shrink-0">
+          SL
+        </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-bold">Sarah L.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(CCS)</span>
+<span class="text-tertiary material-symbols-outlined text-[16px]" title="Scout">military_tech</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">5m ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Can confirm, caution tape is up on 2nd and 3rd floor call buttons as well.
+          </p>
+</div>
+</div>
+<!-- Comment 3: Kenji M. -->
+<div class="flex items-start gap-3 pl-1">
+<div class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-sm shrink-0">
+          KM
+        </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-bold">Kenji M.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Wildcat Nav</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">10m ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Take the covered linkway to NGE building, that ramp is clear today!
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Comment & Photo Input Bar -->
+<section class="bg-surface-container-lowest rounded-xl p-space-sm shadow-md">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Upload verification photo" class="w-12 h-12 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">add_a_photo</span>
+</button>
+<div class="flex-1 relative">
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm outline-none focus:bg-surface-container-highest transition-colors" id="comment-input" placeholder="Add verification note or photo..." type="text"/>
+</div>
+<button aria-label="Send verification comment" class="w-12 h-12 rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors flex items-center justify-center shrink-0 shadow-sm active:scale-95" onclick="submitComment()">
+<span class="material-symbols-outlined text-[22px]">send</span>
+</button>
+</div>
+</section>
+</div>
+<script>
+  let upvotes = 28;
+  let downvotes = 2;
+  let userVoted = false;
+
+  function recordVote(status) {
+    const blockedBtn = document.getElementById('btn-still-blocked');
+    const clearedBtn = document.getElementById('btn-cleared');
+    
+    if (status === 'blocked') {
+      blockedBtn.classList.add('scale-95', 'opacity-90');
+      tallyVote(1);
+      alert('Thank you! Your report helps keep Wildcat step-free routes accurate.');
+    } else {
+      clearedBtn.classList.add('scale-95', 'opacity-90');
+      tallyVote(-1);
+      alert('Report logged! A facilities student scout will verify clearance.');
+    }
+  }
+
+  function tallyVote(delta) {
+    if (userVoted) return;
+    if (delta > 0) {
+      upvotes++;
+      document.getElementById('upvote-count').textContent = upvotes + ' Confirmed';
+    } else {
+      downvotes++;
+      document.getElementById('downvote-count').textContent = downvotes + ' Disputed';
+    }
+    userVoted = true;
+  }
+
+  function submitComment() {
+    const input = document.getElementById('comment-input');
+    if (!input.value.trim()) return;
+    alert('Note posted to CIT-U Pathfinder live feed: ' + input.value);
+    input.value = '';
+  }
+</script></main></body></html>

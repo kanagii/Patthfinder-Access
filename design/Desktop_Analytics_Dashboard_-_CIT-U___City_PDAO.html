@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>PathFinder Access Admin Portal</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"secondary-fixed":"#ffdad2","on-secondary-fixed":"#3d0600","on-secondary-container":"#600e00","surface-bright":"#f9f9ff","error":"#ba1a1a","tertiary":"#8d4b00","primary":"#00685b","on-background":"#141b2b","surface-dim":"#d3daef","on-primary-fixed-variant":"#005046","on-secondary":"#ffffff","surface-container-low":"#f1f3ff","tertiary-container":"#b15f00","on-tertiary-container":"#fffbff","on-tertiary-fixed":"#2f1500","on-surface":"#141b2b","on-secondary-fixed-variant":"#8c1900","inverse-on-surface":"#edf0ff","outline":"#6d7a76","surface":"#f9f9ff","secondary-container":"#fd6442","surface-tint":"#006b5d","primary-fixed":"#83f6e0","primary-fixed-dim":"#65dac4","on-primary":"#ffffff","surface-container-highest":"#dce2f7","primary-container":"#008373","on-primary-container":"#f4fffb","on-error-container":"#93000a","secondary":"#b02e10","on-error":"#ffffff","surface-container":"#e9edff","on-primary-fixed":"#00201b","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#ffb4a3","on-tertiary":"#ffffff","on-surface-variant":"#3d4946","inverse-surface":"#293040","outline-variant":"#bcc9c5","inverse-primary":"#65dac4","background":"#f9f9ff","error-container":"#ffdad6","tertiary-fixed":"#ffdcc3","surface-variant":"#dce2f7","tertiary-fixed-dim":"#ffb77d","on-tertiary-fixed-variant":"#6e3900","surface-container-high":"#e1e8fd"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-md":"1rem","space-xl":"2rem","gutter":"1rem","margin":"1rem","margin-tablet":"1.5rem","margin-desktop":"2.5rem","space-sm":"0.5rem","gutter-desktop":"1.5rem","space-lg":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"headline-sm":["Inter"],"body-sm":["Inter"],"display-lg":["Inter"],"body-lg":["Inter"],"label-md":["Inter"],"headline-lg-mobile":["Inter"],"label-lg":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],"headline-md":["Inter"],"headline-lg":["Inter"],"display-lg-mobile":["Inter"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"600"}],"body-sm":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"display-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"800"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.03em","fontWeight":"700"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"0em","fontWeight":"700"}],"label-lg":["16px",{"lineHeight":"24px","letterSpacing":"0.02em","fontWeight":"600"}],"body-md":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"700"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"700"}],"headline-lg":["30px",{"lineHeight":"38px","letterSpacing":"-0.01em","fontWeight":"700"}],"display-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"800"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-space-lg pb-space-xl"><div class="px-space-lg mb-space-xl flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary">accessible_forward</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface">PathFinder</span><span class="font-label-sm text-label-sm text-primary uppercase">Admin Portal</span></div></div><nav class="flex-1 px-space-md flex flex-col gap-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm min-h-[48px] transition-all bg-primary-container text-on-primary-container font-bold rounded-xl" data-path="overview" href="#"><span class="material-symbols-outlined">dashboard</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm min-h-[48px] rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="hazard-heatmap" href="#"><span class="material-symbols-outlined">map</span><span>Hazard Heatmap</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm min-h-[48px] rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="problem-spots" href="#"><span class="material-symbols-outlined">warning</span><span>Problem Spots</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm min-h-[48px] rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="work-orders" href="#"><span class="material-symbols-outlined">construction</span><span>Work Orders</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm min-h-[48px] rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="export-&amp;-reports" href="#"><span class="material-symbols-outlined">analytics</span><span>Export &amp; Reports</span></a></nav></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-on-surface">PathFinder Access</span><span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-space-md py-space-xs rounded-full">CIT-U &amp; Cebu City PDAO</span></div><div class="flex items-center gap-space-md"><span class="font-body-sm text-body-sm text-on-surface-variant hidden sm:inline">Facilities Admin</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-16 bg-surface w-full px-margin-desktop"><div class="flex flex-col w-full gap-space-xl pb-space-xl">
+<!-- Header Row -->
+<section class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg pt-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary bg-primary-fixed px-space-sm py-space-xs rounded-full">01 / Live Telemetry</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CIT-U Main Campus • Cebu City PDAO</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Campus &amp; City Accessibility Analytics</h1>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Date Range Filter -->
+<div class="relative">
+<button class="min-h-[48px] px-space-lg bg-surface-container-lowest text-on-surface rounded-xl shadow-sm hover:bg-surface-container-low transition-colors flex items-center gap-space-sm font-label-lg text-label-lg" id="dateFilterBtn" type="button">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span id="dateFilterLabel">Last 30 Days</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-space-sm w-52 bg-surface-container-lowest rounded-xl shadow-xl z-30 p-space-xs flex flex-col gap-space-xs" id="dateFilterMenu">
+<button class="date-option min-h-[48px] px-space-md text-left rounded-lg hover:bg-surface-container-low font-body-sm text-body-sm text-on-surface" data-range="Last 7 Days" type="button">Last 7 Days</button>
+<button class="date-option min-h-[48px] px-space-md text-left rounded-lg bg-primary-fixed text-on-primary-fixed font-label-md text-label-md" data-range="Last 30 Days" type="button">Last 30 Days</button>
+<button class="date-option min-h-[48px] px-space-md text-left rounded-lg hover:bg-surface-container-low font-body-sm text-body-sm text-on-surface" data-range="Last 90 Days" type="button">Last 90 Days</button>
+</div>
+</div>
+<!-- Export Data Button -->
+<div class="relative">
+<button class="min-h-[48px] px-space-lg bg-primary text-on-primary rounded-xl shadow-md hover:bg-primary-container transition-colors flex items-center gap-space-sm font-label-lg text-label-lg" id="exportBtn" type="button">
+<span class="material-symbols-outlined">download</span>
+<span>Export Data</span>
+<span class="font-label-sm text-label-sm bg-on-primary/20 px-space-sm py-space-xs rounded-md">CSV / GeoJSON</span>
+</button>
+<div class="hidden absolute right-0 mt-space-sm w-60 bg-surface-container-lowest rounded-xl shadow-xl z-30 p-space-xs flex flex-col gap-space-xs" id="exportMenu">
+<button class="export-option min-h-[48px] px-space-md text-left rounded-lg hover:bg-surface-container-low flex items-center justify-between font-body-sm text-body-sm text-on-surface" data-format="CSV" type="button">
+<span>Accessibility_Report.csv</span>
+<span class="font-label-sm text-label-sm text-primary">CSV</span>
+</button>
+<button class="export-option min-h-[48px] px-space-md text-left rounded-lg hover:bg-surface-container-low flex items-center justify-between font-body-sm text-body-sm text-on-surface" data-format="GeoJSON" type="button">
+<span>CITU_Hazards_Map.geojson</span>
+<span class="font-label-sm text-label-sm text-primary">GeoJSON</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Toast Notification -->
+<div class="hidden fixed bottom-6 right-6 z-50 bg-inverse-surface text-inverse-on-surface px-space-lg py-space-md rounded-xl shadow-xl flex items-center gap-space-md" id="toastBanner">
+<span class="material-symbols-outlined text-inverse-primary">check_circle</span>
+<span class="font-label-md text-label-md" id="toastMessage">Action completed</span>
+</div>
+<!-- Top KPI Summary Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-gutter-desktop">
+<!-- KPI 1: Active Hazards -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Active Hazards</span>
+<span class="font-display-lg text-display-lg text-on-surface">18</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed px-space-sm py-space-xs rounded-full">4 Urgent</span>
+<svg aria-hidden="true" class="w-20 h-8 text-secondary" fill="none" viewbox="0 0 80 32">
+<path d="M2 24 L18 20 L34 26 L50 12 L66 16 L78 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+</div>
+<!-- KPI 2: Resolved This Month -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Resolved This Month</span>
+<span class="font-display-lg text-display-lg text-on-surface">142</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-space-sm py-space-xs rounded-full">+14% vs last mo</span>
+<svg aria-hidden="true" class="w-20 h-8 text-primary" fill="none" viewbox="0 0 80 32">
+<path d="M2 26 L18 22 L34 18 L50 14 L66 10 L78 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+</div>
+<!-- KPI 3: Average Time-to-Fix -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Average Time-to-Fix</span>
+<span class="font-display-lg text-display-lg text-on-surface">4.2 hrs</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-space-sm py-space-xs rounded-full">-35m faster</span>
+<div class="w-24 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+</div>
+<!-- KPI 4: Students Rerouted -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Students Rerouted</span>
+<span class="font-display-lg text-display-lg text-on-surface">2,410</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">alt_route</span>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Safe step-free detours</span>
+<span class="font-label-sm text-label-sm text-primary">99.2% success</span>
+</div>
+</div>
+</section>
+<!-- Main 2-Column Grid -->
+<section class="grid grid-cols-1 xl:grid-cols-12 gap-gutter-desktop">
+<!-- Left Column: Hazard Heatmap (7 cols) -->
+<div class="xl:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary">Spatial Density</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Hazard Heatmap — CIT-U &amp; Cebu City</h2>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>Critical Hotspot
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>Caution
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>Clear Route
+          </span>
+</div>
+</div>
+<!-- Interactive Map Container -->
+<div class="relative w-full h-[360px] rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-85" data-location="Cebu Institute of Technology - University, Cebu City, Philippines" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6qvF1xaltyexQR9Rx5y7fiMDlXRMmV7ReGZiL9TRbPJJWkF180Gc-CrA2iGi0ItZtxRqRqZG9yTdj7sPEndVtKuJAiOIlxsCEUpojfygaO6QBSQSOOCnfEE1b_ezXi2G5EITnGNsIABVRhHdOYr_yGhTX_wi_5iqyQYVAVYYTwHDXWur-ed4KO8TXiVvFZW105MGbs4l4vEB3GJVlehmh5itSu-OUPtBLCcDjYLU')"></div>
+<!-- Coral/Red Hotspot 1: Main Building Elevator -->
+<button class="hotspot-pin absolute top-[34%] left-[44%] -translate-x-1/2 -translate-y-1/2 group focus:outline-none" data-hotspot="Main Building Elevator • 14 reports (Out of Service)" type="button">
+<span class="absolute -inset-6 rounded-full bg-secondary-container/35 animate-pulse"></span>
+<span class="relative w-12 h-12 rounded-full bg-secondary text-on-secondary shadow-lg flex items-center justify-center font-label-md text-label-md">14</span>
+</button>
+<!-- Coral/Red Hotspot 2: Main Quad Ramp -->
+<button class="hotspot-pin absolute top-[56%] left-[58%] -translate-x-1/2 -translate-y-1/2 group focus:outline-none" data-hotspot="Main Quad Ramp • 11 reports (Surface Crack / Slope)" type="button">
+<span class="absolute -inset-5 rounded-full bg-secondary-container/30 animate-pulse"></span>
+<span class="relative w-12 h-12 rounded-full bg-secondary text-on-secondary shadow-lg flex items-center justify-center font-label-md text-label-md">11</span>
+</button>
+<!-- Amber Caution: N. Bacalso Ave Crosswalk -->
+<button class="hotspot-pin absolute top-[72%] left-[30%] -translate-x-1/2 -translate-y-1/2 group focus:outline-none" data-hotspot="N. Bacalso Ave Crosswalk • 7 reports (Blocked Curb Cut)" type="button">
+<span class="absolute -inset-4 rounded-full bg-tertiary-fixed-dim/40"></span>
+<span class="relative w-12 h-12 rounded-full bg-tertiary text-on-tertiary shadow-md flex items-center justify-center font-label-md text-label-md">7</span>
+</button>
+<!-- Teal Clear Zone: Engineering Annex -->
+<button class="hotspot-pin absolute top-[28%] left-[72%] -translate-x-1/2 -translate-y-1/2 group focus:outline-none" data-hotspot="Engineering Annex Path • Verified Step-Free" type="button">
+<span class="relative w-12 h-12 rounded-full bg-primary text-on-primary shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">accessible_forward</span>
+</span>
+</button>
+<!-- Floating Hotspot Inspector -->
+<div class="absolute bottom-4 left-4 right-4 bg-surface/95 backdrop-blur-md rounded-xl p-space-md shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-secondary shrink-0">location_on</span>
+<span class="font-label-md text-label-md text-on-surface truncate" id="hotspotInfo">Main Building Elevator • 14 reports (Out of Service)</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary shrink-0">Click pins to inspect</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Hazards Reported vs. Resolved (5 cols) -->
+<div class="xl:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary">6-Week Trend</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Hazards Reported vs. Resolved</h2>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface">
+<span class="w-3 h-3 rounded-sm bg-secondary-container"></span>Reported
+          </span>
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>Resolved
+          </span>
+</div>
+</div>
+<!-- Bar + Line Comparison SVG Chart -->
+<div class="w-full flex-1 flex flex-col justify-center">
+<svg aria-label="Hazards Reported vs Resolved over the past 6 weeks" class="w-full h-64" role="img" viewbox="0 0 420 240">
+<!-- Horizontal Grid Lines -->
+<line stroke="#e1e8fd" stroke-width="1" x1="36" x2="405" y1="30" y2="30"></line>
+<line stroke="#e1e8fd" stroke-width="1" x1="36" x2="405" y1="75" y2="75"></line>
+<line stroke="#e1e8fd" stroke-width="1" x1="36" x2="405" y1="120" y2="120"></line>
+<line stroke="#e1e8fd" stroke-width="1" x1="36" x2="405" y1="165" y2="165"></line>
+<line stroke="#bcc9c5" stroke-width="1.5" x1="36" x2="405" y1="210" y2="210"></line>
+<!-- Y-Axis Labels -->
+<text class="fill-on-surface-variant text-[11px] font-medium" text-anchor="end" x="28" y="34">40</text>
+<text class="fill-on-surface-variant text-[11px] font-medium" text-anchor="end" x="28" y="79">30</text>
+<text class="fill-on-surface-variant text-[11px] font-medium" text-anchor="end" x="28" y="124">20</text>
+<text class="fill-on-surface-variant text-[11px] font-medium" text-anchor="end" x="28" y="169">10</text>
+<text class="fill-on-surface-variant text-[11px] font-medium" text-anchor="end" x="28" y="214">0</text>
+<!-- Week 1 -->
+<rect fill="#fd6442" height="99" rx="4" width="18" x="52" y="111"></rect>
+<rect fill="#00685b" height="81" rx="4" width="18" x="74" y="129"></rect>
+<text class="fill-on-surface-variant text-[11px] font-semibold" text-anchor="middle" x="72" y="230">Wk 1</text>
+<!-- Week 2 -->
+<rect fill="#fd6442" height="126" rx="4" width="18" x="112" y="84"></rect>
+<rect fill="#00685b" height="117" rx="4" width="18" x="134" y="93"></rect>
+<text class="fill-on-surface-variant text-[11px] font-semibold" text-anchor="middle" x="132" y="230">Wk 2</text>
+<!-- Week 3 -->
+<rect fill="#fd6442" height="108" rx="4" width="18" x="172" y="102"></rect>
+<rect fill="#00685b" height="126" rx="4" width="18" x="194" y="84"></rect>
+<text class="fill-on-surface-variant text-[11px] font-semibold" text-anchor="middle" x="192" y="230">Wk 3</text>
+<!-- Week 4 -->
+<rect fill="#fd6442" height="144" rx="4" width="18" x="232" y="66"></rect>
+<rect fill="#00685b" height="153" rx="4" width="18" x="254" y="57"></rect>
+<text class="fill-on-surface-variant text-[11px] font-semibold" text-anchor="middle" x="252" y="230">Wk 4</text>
+<!-- Week 5 -->
+<rect fill="#fd6442" height="117" rx="4" width="18" x="292" y="93"></rect>
+<rect fill="#00685b" height="140" rx="4" width="18" x="314" y="70"></rect>
+<text class="fill-on-surface-variant text-[11px] font-semibold" text-anchor="middle" x="312" y="230">Wk 5</text>
+<!-- Week 6 -->
+<rect fill="#fd6442" height="90" rx="4" width="18" x="352" y="120"></rect>
+<rect fill="#00685b" height="126" rx="4" width="18" x="374" y="84"></rect>
+<text class="fill-on-surface-variant text-[11px] font-semibold" text-anchor="middle" x="372" y="230">Wk 6</text>
+<!-- Resolution Trend Line -->
+<path d="M83 129 L143 93 L203 84 L263 57 L323 70 L383 84" fill="none" stroke="#141b2b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<circle cx="83" cy="129" fill="#141b2b" r="4"></circle>
+<circle cx="143" cy="93" fill="#141b2b" r="4"></circle>
+<circle cx="203" cy="84" fill="#141b2b" r="4"></circle>
+<circle cx="263" cy="57" fill="#141b2b" r="4"></circle>
+<circle cx="323" cy="70" fill="#141b2b" r="4"></circle>
+<circle cx="383" cy="84" fill="#141b2b" r="4"></circle>
+</svg>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between gap-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Resolution rate improved over 6 weeks</span>
+<span class="font-label-md text-label-md text-primary">+22% net clearance</span>
+</div>
+</div>
+</section>
+<!-- Full-Width Top 5 Problem Spots Data Table -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary">02 / Priority Queue</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Top 5 Problem Spots</h2>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sorted by citizen &amp; student report volume</span>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[760px]">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant">
+<th class="py-space-md px-space-md font-label-sm text-label-sm uppercase rounded-l-lg">Location</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm uppercase">Obstacle Type</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm uppercase">Reports Count</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm uppercase">Avg. Time-to-Fix</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm uppercase">Status</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm uppercase text-right rounded-r-lg">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-lg text-label-lg">Main Building Elevator</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Mechanical Outage</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg">14</td>
+<td class="py-space-md px-space-md text-on-surface-variant">5.8 hrs</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-md py-space-xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Urgent</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="dispatch-btn min-h-[48px] px-space-md rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md" type="button">Dispatch Ticket</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low/80 transition-colors">
+<td class="py-space-md px-space-md font-label-lg text-label-lg">Main Quad Ramp</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Steep Slope / Surface Crack</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg">11</td>
+<td class="py-space-md px-space-md text-on-surface-variant">4.5 hrs</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-md py-space-xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Urgent</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="dispatch-btn min-h-[48px] px-space-md rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md" type="button">Dispatch Ticket</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-lg text-label-lg">N. Bacalso Ave Crosswalk</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Blocked Curb Cut</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg">7</td>
+<td class="py-space-md px-space-md text-on-surface-variant">3.2 hrs</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-md py-space-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">In Progress</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="dispatch-btn min-h-[48px] px-space-md rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md" type="button">Dispatch Ticket</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low/80 transition-colors">
+<td class="py-space-md px-space-md font-label-lg text-label-lg">CCS Building Sidewalk</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Construction Debris</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg">5</td>
+<td class="py-space-md px-space-md text-on-surface-variant">2.9 hrs</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-md py-space-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">In Progress</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="dispatch-btn min-h-[48px] px-space-md rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md" type="button">Dispatch Ticket</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-lg text-label-lg">Engineering Annex Gate</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Uneven Tactile Paving</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg">3</td>
+<td class="py-space-md px-space-md text-on-surface-variant">2.1 hrs</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-md py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Resolved</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="dispatch-btn min-h-[48px] px-space-md rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md" type="button">Dispatch Ticket</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<script>
+  (function () {
+    const toast = document.getElementById('toastBanner');
+    const toastMsg = document.getElementById('toastMessage');
+    let toastTimer;
+
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    const dateBtn = document.getElementById('dateFilterBtn');
+    const dateMenu = document.getElementById('dateFilterMenu');
+    const dateLabel = document.getElementById('dateFilterLabel');
+
+    dateBtn.addEventListener('click', () => {
+      dateMenu.classList.toggle('hidden');
+      exportMenu.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.date-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        dateLabel.textContent = btn.dataset.range;
+        dateMenu.classList.add('hidden');
+        showToast('Updated view to ' + btn.dataset.range);
+      });
+    });
+
+    const exportBtn = document.getElementById('exportBtn');
+    const exportMenu = document.getElementById('exportMenu');
+
+    exportBtn.addEventListener('click', () => {
+      exportMenu.classList.toggle('hidden');
+      dateMenu.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.export-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        exportMenu.classList.add('hidden');
+        showToast('Exporting ' + btn.dataset.format + ' dataset...');
+      });
+    });
+
+    const hotspotInfo = document.getElementById('hotspotInfo');
+    document.querySelectorAll('.hotspot-pin').forEach((pin) => {
+      pin.addEventListener('click', () => {
+        hotspotInfo.textContent = pin.dataset.hotspot;
+      });
+    });
+
+    document.querySelectorAll('.dispatch-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.textContent = 'Dispatched';
+        btn.classList.remove('bg-primary', 'text-on-primary', 'hover:bg-primary-container');
+        btn.classList.add('bg-primary-fixed', 'text-on-primary-fixed');
+        btn.disabled = true;
+        showToast('Maintenance ticket dispatched to Facilities');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dateBtn.contains(e.target) && !dateMenu.contains(e.target)) {
+        dateMenu.classList.add('hidden');
+      }
+      if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target)) {
+        exportMenu.classList.add('hidden');
+      }
+    });
+  })();
+</script></main></div></body></html>

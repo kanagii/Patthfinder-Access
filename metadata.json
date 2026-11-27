@@ -1,0 +1,6 @@
+{
+  "name": "PathFinder Access",
+  "description": "Campus & city accessibility navigator, crowdsourced hazard reporting, and CIT-U / Cebu City PDAO analytics portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

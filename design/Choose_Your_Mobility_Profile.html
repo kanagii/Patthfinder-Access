@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><title>PathFinder Access</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-container-high": "#e1e8fd", "on-surface": "#141b2b", "on-surface-variant": "#3d4946", "surface-container-low": "#f1f3ff", "on-secondary-fixed": "#3d0600", "primary-fixed": "#83f6e0", "tertiary-fixed-dim": "#ffb77d", "outline": "#6d7a76", "outline-variant": "#bcc9c5", "tertiary": "#8d4b00", "on-secondary": "#ffffff", "on-tertiary-container": "#fffbff", "error": "#ba1a1a", "surface-variant": "#dce2f7", "on-primary-container": "#f4fffb", "surface-container-highest": "#dce2f7", "on-primary-fixed-variant": "#005046", "tertiary-fixed": "#ffdcc3", "tertiary-container": "#b15f00", "surface-bright": "#f9f9ff", "surface-container": "#e9edff", "on-secondary-fixed-variant": "#8c1900", "error-container": "#ffdad6", "on-error-container": "#93000a", "inverse-surface": "#293040", "on-tertiary": "#ffffff", "primary-container": "#008373", "on-error": "#ffffff", "surface-tint": "#006b5d", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2f1500", "surface": "#f9f9ff", "secondary": "#b02e10", "on-background": "#141b2b", "secondary-fixed": "#ffdad2", "secondary-container": "#fd6442", "primary-fixed-dim": "#65dac4", "secondary-fixed-dim": "#ffb4a3", "surface-container-lowest": "#ffffff", "background": "#f9f9ff", "primary": "#00685b", "on-tertiary-fixed-variant": "#6e3900", "on-secondary-container": "#600e00", "inverse-primary": "#65dac4", "surface-dim": "#d3daef", "on-primary-fixed": "#00201b" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "margin-tablet": "1.5rem", "gutter": "1rem", "margin-desktop": "2.5rem", "margin": "1rem", "space-xl": "2rem", "gutter-desktop": "1.5rem", "space-lg": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem" }, fontFamily: { "label-md": ["Inter"], "headline-lg": ["Inter"], "headline-md": ["Inter"], "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-sm": ["Inter"], "body-md": ["Inter"], "label-sm": ["Inter"], "display-lg": ["Inter"], "display-lg-mobile": ["Inter"], "body-sm": ["Inter"], "headline-lg-mobile": ["Inter"] }, fontSize: { "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.03em", fontWeight: "700" }], "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "700" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" }], "label-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }], "body-md": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700" }], "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "display-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "800" }], "body-sm": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }], "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "0em", fontWeight: "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">accessible_forward</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">PathFinder</span><span class="font-label-sm text-label-sm text-primary tracking-wider uppercase">CIT-U Access</span></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span></div></div></div></header><main class="flex flex-col flex-1 w-full bg-surface pt-16 px-margin pb-safe"><div class="flex flex-col w-full pb-8">
+<!-- Progress Header -->
+<div class="pt-4 pb-3 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Step 1 of 3: Personalized Navigation
+      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Campus Onboarding</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight mt-1">
+      Choose your mobility profile
+    </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+      PathFinder customizes route inclines, surface smoothness, and eliminates physical barriers across CIT-U campus based on your needs.
+    </p>
+</div>
+<!-- Profile Cards Container -->
+<div aria-label="Campus Mobility Profile Options" class="flex flex-col gap-3 my-2" role="radiogroup">
+<!-- Card 1: Wheelchair (Selected by default) -->
+<div aria-checked="true" class="profile-card relative p-4 rounded-xl bg-surface-container-lowest shadow-md transition-all duration-200 cursor-pointer select-none ring-2 ring-primary bg-primary/5" id="profile-card-1" onclick="selectProfile(1)" role="radio" tabindex="0">
+<div class="flex items-start gap-3.5">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-primary text-on-primary shadow-sm transition-colors" id="icon-bg-1">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">accessible_forward</span>
+</div>
+<div class="flex-1 min-w-0 pr-7">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Wheelchair &amp; Powered Mobility</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 line-clamp-2">
+            For manual wheelchairs, electric power chairs, and motorized mobility scooters
+          </p>
+<!-- Key Parameters Badge Panel -->
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container-low flex flex-wrap gap-1.5 items-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">do_not_step</span> Zero stairs
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">landscape</span> Max 4.5% ramp
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">door_front</span> Width ≥ 90cm
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span> Paved/smooth
+            </span>
+</div>
+</div>
+<!-- Custom Radio Indicator -->
+<div class="absolute top-4 right-4 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm transition-all" id="radio-circle-1">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Cane / Walker -->
+<div aria-checked="false" class="profile-card relative p-4 rounded-xl bg-surface-container-lowest shadow-sm transition-all duration-200 cursor-pointer select-none" id="profile-card-2" onclick="selectProfile(2)" role="radio" tabindex="0">
+<div class="flex items-start gap-3.5">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-surface-container-high text-on-surface-variant transition-colors" id="icon-bg-2">
+<span class="material-symbols-outlined text-[28px]">elderly</span>
+</div>
+<div class="flex-1 min-w-0 pr-7">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Cane, Crutches or Walker</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 line-clamp-2">
+            For individuals with limited stamina, balance considerations, or ambulatory aids
+          </p>
+<!-- Key Parameters Badge Panel -->
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container-low flex flex-wrap gap-1.5 items-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">chair</span> Rest stops ≤ 60m
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">signpost</span> Handrail priority
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">stairs</span> Max 3 steps w/ rail
+            </span>
+</div>
+</div>
+<!-- Custom Radio Indicator -->
+<div class="absolute top-4 right-4 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-transparent transition-all" id="radio-circle-2">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Blind or Low Vision -->
+<div aria-checked="false" class="profile-card relative p-4 rounded-xl bg-surface-container-lowest shadow-sm transition-all duration-200 cursor-pointer select-none" id="profile-card-3" onclick="selectProfile(3)" role="radio" tabindex="0">
+<div class="flex items-start gap-3.5">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-surface-container-high text-on-surface-variant transition-colors" id="icon-bg-3">
+<span class="material-symbols-outlined text-[28px]">visibility</span>
+</div>
+<div class="flex-1 min-w-0 pr-7">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Blind or Low Vision</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 line-clamp-2">
+            Audio cues, yellow tactile paving blister alerts, and high-contrast cartography
+          </p>
+<!-- Key Parameters Badge Panel -->
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container-low flex flex-wrap gap-1.5 items-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">touch_app</span> Braille guides
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">volume_up</span> Audible chimes
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">warning</span> Overhead clearance
+            </span>
+</div>
+</div>
+<!-- Custom Radio Indicator -->
+<div class="absolute top-4 right-4 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-transparent transition-all" id="radio-circle-3">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Everyday Pedestrian & Stroller -->
+<div aria-checked="false" class="profile-card relative p-4 rounded-xl bg-surface-container-lowest shadow-sm transition-all duration-200 cursor-pointer select-none" id="profile-card-4" onclick="selectProfile(4)" role="radio" tabindex="0">
+<div class="flex items-start gap-3.5">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-surface-container-high text-on-surface-variant transition-colors" id="icon-bg-4">
+<span class="material-symbols-outlined text-[28px]">stroller</span>
+</div>
+<div class="flex-1 min-w-0 pr-7">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Everyday Pedestrian &amp; Stroller</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 line-clamp-2">
+            Fastest standard walking routes, stroller-friendly options, and campus shortcuts
+          </p>
+<!-- Key Parameters Badge Panel -->
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container-low flex flex-wrap gap-1.5 items-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">directions_walk</span> Fastest paths
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">roofing</span> Sheltered walkways
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">luggage</span> Stroller bypass
+            </span>
+</div>
+</div>
+<!-- Custom Radio Indicator -->
+<div class="absolute top-4 right-4 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-transparent transition-all" id="radio-circle-4">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Parameter Notice Banner -->
+<div class="mt-3 mb-4 p-3.5 rounded-xl bg-surface-container-high flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">tips_and_updates</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<span class="font-bold text-on-surface">Flexibility Guaranteed:</span> You can fine-tune ramp inclines, curb tolerances, and auditory alerts anytime in Settings.
+    </p>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col gap-2.5 mt-auto pt-2">
+<button class="w-full min-h-[56px] py-3.5 px-6 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-md hover:bg-primary-container active:scale-[0.99] transition-all focus:outline-none" id="btn-continue" type="button">
+<span>Continue to CIT-U Campus Map</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="w-full min-h-[48px] py-2 px-4 rounded-xl text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center focus:outline-none" type="button">
+      Skip for now (Standard Walk)
+    </button>
+</div>
+</div>
+<script>
+  function selectProfile(selectedId) {
+    for (let i = 1; i <= 4; i++) {
+      const card = document.getElementById('profile-card-' + i);
+      const icon = document.getElementById('icon-bg-' + i);
+      const radio = document.getElementById('radio-circle-' + i);
+      
+      if (i === selectedId) {
+        card.setAttribute('aria-checked', 'true');
+        card.classList.add('ring-2', 'ring-primary', 'bg-primary/5', 'shadow-md');
+        card.classList.remove('shadow-sm');
+        
+        icon.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+        icon.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        
+        radio.classList.remove('bg-surface-container-high', 'text-transparent');
+        radio.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+      } else {
+        card.setAttribute('aria-checked', 'false');
+        card.classList.remove('ring-2', 'ring-primary', 'bg-primary/5', 'shadow-md');
+        card.classList.add('shadow-sm');
+        
+        icon.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+        icon.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        
+        radio.classList.add('bg-surface-container-high', 'text-transparent');
+        radio.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+      }
+    }
+  }
+</script></main></body></html>
